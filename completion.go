@@ -3,8 +3,8 @@ package prompt
 import (
 	"strings"
 
-	"github.com/tengteng22/go-prompt/internal/debug"
 	runewidth "github.com/mattn/go-runewidth"
+	"github.com/tengteng22/go-prompt/internal/debug"
 )
 
 const (
@@ -41,7 +41,7 @@ type CompletionManager struct {
 
 // GetSelectedSuggestion returns the selected item.
 func (c *CompletionManager) GetSelectedSuggestion() (s Suggest, ok bool) {
-	if c.selected == -1 {
+	if c.selected == -1 || c.selected >= len(c.tmp) {
 		return Suggest{}, false
 	} else if c.selected < -1 {
 		debug.Assert(false, "must not reach here")
